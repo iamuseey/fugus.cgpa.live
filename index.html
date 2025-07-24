@@ -91,7 +91,7 @@ h1 {
   <div id="firstSemester">
     <h3>First Semester</h3>
     <div class="form-group">
-      <input type="text" name="grade1[]" placeholder="Grade (A/B/C/D/F)">
+      <input type="text" name="grade1[]" placeholder="Grade (A/B/C/D/E/F)">
       <input type="number" name="unit1[]" placeholder="Course Unit">
     </div>
     <div class="form-group">
@@ -128,6 +128,7 @@ h1 {
       if (grade === 'B') return 4;
       if (grade === 'C') return 3;
       if (grade === 'D') return 2;
+      if (grade === 'E') return 1
       if (grade === 'F') return 0;
       return null;
     }
