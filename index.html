@@ -1,131 +1,172 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FUGUS CGPA Calculator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #f4f6f9;
-      color: #333;
-    }
-    h1 {
-      text-align: center;
-      color: #003366;
-    }
-    .calculator {
-      max-width: 600px;
-      margin: auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .course-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    input[type="text"], input[type="number"] {
-      flex: 1;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    button {
-      padding: 10px;
-      width: 100%;
-      border: none;
-      border-radius: 6px;
-      background: #0052cc;
-      color: white;
-      font-size: 16px;
-      margin-top: 10px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #003d99;
-    }
-    .dual-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 20px;
-    }
-    .explanation {
-      margin-top: 20px;
-      background: #f0f0f0;
-      padding: 15px;
-      border-left: 4px solid #0052cc;
-      border-radius: 6px;
-    }
-    .explanation h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
-    }
-    .explanation span {
-      display: inline-block;
-      margin-right: 15px;
-      font-weight: bold;
-      color: #333;
-    }
-    footer {
-      margin-top: 30px;
-      text-align: center;
-      color: #666;
-      font-size: 14px;
-    }
+    :root {
+      --primary-color: #2e7d32; /* FUGUS green */
+      --accent-color: #d32f2f; /* red accent */
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --card-bg: #f0f0f0;
+    }[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --card-bg: #1e1e1e;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.toggle-theme {
+  float: right;
+  margin-top: -30px;
+}
+
+.semester-toggle {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.course-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.course-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.course-row input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  margin: 5px;
+}
+
+button:hover {
+  background: var(--accent-color);
+}
+
+.result, .info, .history {
+  background: var(--card-bg);
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.info span {
+  display: inline-block;
+  background: var(--accent-color);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin: 4px;
+  font-size: 14px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.logo img {
+  height: 60px;
+}
+
   </style>
 </head>
 <body>
-  <h1>FUGUS CGPA Calculator</h1>
-  <div class="calculator" id="calculator">
-    <div class="course-row">
-      <input type="text" placeholder="Course Name">
-      <input type="text" placeholder="A–F">
-      <input type="number" placeholder="Unit">
+  <div class="container">
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/en/3/3c/Federal_University_Gusau_Logo.png" alt="FUGUS Logo">
     </div>
-    <div class="course-row">
-      <input type="text" placeholder="Course Name">
-      <input type="text" placeholder="A–F">
-      <input type="number" placeholder="Unit">
-    </div>
-    <div class="course-row">
-      <input type="text" placeholder="Course Name">
-      <input type="text" placeholder="A–F">
-      <input type="number" placeholder="Unit">
-    </div>
-    <div class="course-row">
-      <input type="text" placeholder="Course Name">
-      <input type="text" placeholder="A–F">
-      <input type="number" placeholder="Unit">
-    </div>
-    <div class="course-row">
-      <input type="text" placeholder="Course Name">
-      <input type="text" placeholder="A–F">
-      <input type="number" placeholder="Unit">
-    </div>
-    <div class="course-row">
-      <input type="text" placeholder="Course Name">
-      <input type="text" placeholder="A–F">
-      <input type="number" placeholder="Unit">
-    </div>
-    <div class="dual-buttons">
-      <button onclick="addCourse()">+ Add Course</button>
-      <button onclick="calculateCGPA()">Calculate CGPA</button>
-    </div>
-    <div class="explanation">
-      <h3>How the Calculation Works:</h3>
-      <span>A = 5</span><span>B = 4</span><span>C = 3</span><span>D = 2</span><span>E = 1</span><span>F = 0</span><br><br>
-      <strong>CGPA</strong> = Total Grade Points ÷ Total Course Units
-    </div>
+    <h1>FUGUS CGPA Calculator</h1>
+    <button class="toggle-theme" onclick="toggleTheme()">
+      <i class="fa-solid fa-moon"></i> Toggle Dark Mode
+    </button><div class="semester-toggle">
+  <button onclick="addCourseRow()"><i class="fa-solid fa-plus"></i> Add Course</button>
+  <button onclick="calculateCGPA()"><i class="fa-solid fa-equals"></i> Calculate CGPA</button>
+  <button onclick="saveAsImage()"><i class="fa-solid fa-file-image"></i> Save as Image</button>
+</div>
+
+<div class="course-table" id="courseTable">
+  <div class="course-row">
+    <input type="text" placeholder="Course Name">
+    <input type="text" placeholder="A–F">
+    <input type="number" placeholder="Unit">
   </div>
-  <footer>
-    Created with ❤️ by <strong>Useey Gusau</strong>
-  </footer>
-  <script>
-    function addCourse() {
+</div>
+
+<div class="result" id="result"></div>
+
+<div class="info">
+  <strong>How the Calculation Works:</strong><br>
+  <span>A = 5</span>
+  <span>B = 4</span>
+  <span>C = 3</span>
+  <span>D = 2</span>
+  <span>E = 1</span>
+  <span>F = 0</span>
+  <br>CGPA = Total Grade Points ÷ Total Course Units
+</div>
+
+<div class="history" id="history">
+  <strong>Saved Results:</strong>
+  <ul id="historyList"></ul>
+</div>
+
+<footer>
+  Created with ❤️ by <strong>Useey Gusau</strong>
+</footer>
+
+  </div>  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>  <script>
+    function addCourseRow() {
       const row = document.createElement('div');
       row.className = 'course-row';
       row.innerHTML = `
@@ -133,30 +174,53 @@
         <input type="text" placeholder="A–F">
         <input type="number" placeholder="Unit">
       `;
-      document.getElementById('calculator').insertBefore(row, document.querySelector('.dual-buttons'));
-    }function calculateCGPA() {
-  const rows = document.querySelectorAll('.course-row');
-  let totalPoints = 0;
-  let totalUnits = 0;
-  const gradeMap = { 'A': 5, 'B': 4, 'C': 3, 'D': 2, 'E': 1, 'F': 0 };
-
-  rows.forEach(row => {
-    const gradeInput = row.children[1].value.toUpperCase();
-    const unitInput = parseInt(row.children[2].value);
-    if (gradeMap.hasOwnProperty(gradeInput) && !isNaN(unitInput)) {
-      totalPoints += gradeMap[gradeInput] * unitInput;
-      totalUnits += unitInput;
+      document.getElementById('courseTable').appendChild(row);
     }
-  });
 
-  if (totalUnits === 0) {
-    alert("Please enter valid grades and units.");
-  } else {
-    const cgpa = (totalPoints / totalUnits).toFixed(2);
-    alert("Your CGPA is: " + cgpa);
-  }
-}
+    function gradeToPoint(grade) {
+      grade = grade.toUpperCase();
+      const points = {A: 5, B: 4, C: 3, D: 2, E: 1, F: 0};
+      return points[grade] !== undefined ? points[grade] : null;
+    }
 
-  </script>
-</body>
+    function calculateCGPA() {
+      const rows = document.querySelectorAll('.course-row');
+      let totalUnits = 0;
+      let totalPoints = 0;
+      for (let row of rows) {
+        const grade = row.children[1].value.trim();
+        const unit = parseFloat(row.children[2].value);
+        const point = gradeToPoint(grade);
+        if (!isNaN(unit) && point !== null) {
+          totalUnits += unit;
+          totalPoints += point * unit;
+        }
+      }
+      const cgpa = (totalPoints / totalUnits).toFixed(2);
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `<strong>Your CGPA is:</strong> <span style='font-size:24px;color:var(--primary-color)'>${cgpa}</span>`;
+      saveToHistory(cgpa);
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      document.documentElement.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+    }
+
+    function saveToHistory(cgpa) {
+      const historyList = document.getElementById('historyList');
+      const li = document.createElement('li');
+      li.textContent = `CGPA: ${cgpa} (Saved on ${new Date().toLocaleString()})`;
+      historyList.prepend(li);
+    }
+
+    function saveAsImage() {
+      html2canvas(document.querySelector(".result")).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'cgpa_result.png';
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    }
+  </script></body>
 </html>
